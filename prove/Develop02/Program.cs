@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics.Contracts;
+using System.Security.Cryptography;
 
 class Program
 {
@@ -13,7 +14,7 @@ class Program
 
         Console.WriteLine("Welcome to your Virtual Journal!");
         while (repeat) {
-            Console.WriteLine("\nPlease select one of the following choices:\n1. Write\n2. Display\n3. Load\n4. Save\n5. Quit");
+            Console.WriteLine("\nPlease select one of the following choices:\n1. Write\n2. Display\n3. Load\n4. Save\n5. Edit entries \n6. Quit");
             Console.Write("What would you like to do? ");
             int selectedNum = int.Parse(Console.ReadLine());
     
@@ -33,8 +34,14 @@ class Program
                 journal.SaveToFile();
             }
             else if (selectedNum == 5) {
+                journal.DisplayEntries(true);
+                journal.EditEntry();
+            }
+            else if (selectedNum == 6) {
                 repeat = false;
             }
         };
     }
 }
+
+// To exceed requirements I created a new option for the user to edit an entry. Then, The entry is stired in the program and can be saved to a file normally.
