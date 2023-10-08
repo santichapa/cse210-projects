@@ -44,4 +44,4 @@ class Program
     }
 }
 
-// To exceed requirements I created a new option for the user to edit an entry. Then, The entry is stired in the program and can be saved to a file normally.
+// To exceed requirements, I created a new option for the user to edit an entry. Then, the entry is stored in the program and can be saved to a file normally.
