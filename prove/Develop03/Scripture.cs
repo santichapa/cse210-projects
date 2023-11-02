@@ -4,13 +4,13 @@ using Microsoft.VisualBasic;
 
 public class Scripture
 {
-    private List<Word> Words;
+    private List<Word> _words;
     private Reference _reference;
 
     public Scripture(Reference reference, string text)
     {
         _reference = reference;
-        Words = TextToList(text);
+        _words = TextToList(text);
 
     }
 
@@ -27,23 +27,23 @@ public class Scripture
     }
     public void HideWords() {
         Random random = new();
-        int index = random.Next(0, Words.Count);
+        int index = random.Next(0, _words.Count);
         if (IsCompletelyHidden() == false)
         {
-            while (Words[index].GetHiddenStatus())
+            while (_words[index].GetHiddenStatus())
             {
-                index = random.Next(0, Words.Count);
+                index = random.Next(0, _words.Count);
             }
         }
         
-        if (Words[index].GetHiddenStatus() == false)
+        if (_words[index].GetHiddenStatus() == false)
         {
-            Words[index].SetHiddenStatus(true);
+            _words[index].SetHiddenStatus(true);
         }
     }
     public string GetRenderedText() {
         string text = "";
-        foreach (Word w in Words)
+        foreach (Word w in _words)
         {
             if (w.GetHiddenStatus())
             {
@@ -58,7 +58,7 @@ public class Scripture
         return $"{text}";
     }
     public bool IsCompletelyHidden() {
-        return Words.All(word => word.GetHiddenStatus());
+        return _words.All(word => word.GetHiddenStatus());
     }
 
     // public void DisplayScripture() {
