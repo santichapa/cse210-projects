@@ -4,6 +4,9 @@ public class Activity
     protected string _description;
     protected int _timer;
 
+    public Activity()
+    {
+    }
     public Activity(string name, string description, int timer)
     {
         _activityName = name;
@@ -11,8 +14,65 @@ public class Activity
         _timer = timer;
     }
 
-    public void DisplayMessage() {}
-    public void DisplayEndMessage() {}
-    public void PauseAnimation() {}
-    public void CounterAnimation() {}
+    public void DisplayMessage() {
+        Console.Clear();
+        Console.WriteLine($"Welcome to the {_activityName}.");
+        Console.WriteLine(_description);
+    }
+    public void DisplayEndMessage() {
+        Console.WriteLine($"\nYou did the {_activityName} for {_timer} seconds.");
+        Console.ReadLine();
+    }
+    public void SetTimer() {
+        Console.Write("\nHow long, in seconds, would you like for your session? ");
+        int timer = int.Parse(Console.ReadLine());
+        _timer = timer;
+    }
+
+    
+    public void PauseAnimation(int duration = 10) {
+        List<string> animationStrings = new()
+        {
+            "/",
+            "–",
+            "\\",
+            "|",
+            "/",
+            "–",
+            "\\",
+            "|",
+            "/",
+            "–",
+            "\\",
+            "|",
+            "/",
+            "–",
+            "\\",
+            "|",
+            "/",
+            "–",
+            "\\",
+            "|"
+        };
+        DateTime startTime = DateTime.Now;
+        DateTime endTime = startTime.AddSeconds(duration);
+        while (DateTime.Now < endTime)
+        {
+            foreach (string s in animationStrings)
+            {
+            Console.Write(s);
+            Thread.Sleep(500);
+            Console.Write($"\b\b  \b\b");
+            }
+            
+        }
+    }
+    public void Countdown(int countStart = 3) {
+        for (int i = countStart; i > 0; i--)
+        {
+            Console.Write($"{i}...");
+            Thread.Sleep(1000);
+            Console.Write($"\b\b\b\b\b     \b\b\b\b\b");
+        }
+    }
 }
