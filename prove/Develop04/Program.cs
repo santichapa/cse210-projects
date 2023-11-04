@@ -6,6 +6,8 @@ class Program
     static void Main(string[] args)
     {
     BreathingActivity breathingActivity = new();
+    ReflectActivity reflectActivity = new();
+    ListingActivity listingActivity = new();
     Menu menu = new();
 
     Console.Clear();
@@ -21,12 +23,12 @@ class Program
         }
         else if (option == 2)
         {
-            
+            reflectActivity.RunReflectActivity();
             Console.Clear();
         }
         else if (option == 3)
         {
-            
+            listingActivity.RunListingActivity();
             Console.Clear();
         }
     } while (option != 4);

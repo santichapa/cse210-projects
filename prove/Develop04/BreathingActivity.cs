@@ -9,7 +9,6 @@ public class BreathingActivity : Activity
     }
     
     public void RunBreathingActivity() {
-        
         DisplayMessage();
         SetTimer();
         Console.WriteLine("Get Ready...");
@@ -30,5 +29,6 @@ public class BreathingActivity : Activity
         PauseAnimation(3);
 
         DisplayEndMessage();
+        _activityCounter++;
     }
 }

@@ -3,20 +3,23 @@ public class Activity
     protected string _activityName;
     protected string _description;
     protected int _timer;
+    protected int _activityCounter;
 
     public Activity()
     {
     }
-    public Activity(string name, string description, int timer)
+    public Activity(string name, string description, int timer, int activityCounter)
     {
         _activityName = name;
         _description = description;
         _timer = timer;
+        _activityCounter = activityCounter;
     }
 
     public void DisplayMessage() {
         Console.Clear();
         Console.WriteLine($"Welcome to the {_activityName}.");
+        GetActivityCount();
         Console.WriteLine(_description);
     }
     public void DisplayEndMessage() {
@@ -46,16 +49,14 @@ public class Activity
         {
             string s = animationStrings[i];
             Console.Write(s);
-            Thread.Sleep(500);
-            Console.Write($"\b\b  \b\b");
+            Thread.Sleep(250);
+            Console.Write($"\b \b");
 
             i++;
             if (i >= animationStrings.Count)
             {
                 i = 0;
             }
-            
-            
         }
     }
     public void Countdown(int countStart = 3) {
@@ -65,5 +66,8 @@ public class Activity
             Thread.Sleep(1000);
             Console.Write($"\b \b");
         }
+    }
+    public void GetActivityCount() {
+        Console.WriteLine($"(Times done: {_activityCounter})");
     }
 }
