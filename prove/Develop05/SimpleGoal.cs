@@ -1,16 +1,31 @@
+using System.Reflection.Metadata.Ecma335;
+
 public class SimpleGoal : Goal
 {
+
+    public SimpleGoal (){}
     public SimpleGoal(string goalName, string goalDescription, int pointsValue) : base(goalName, goalDescription, pointsValue)
     {
-        _goalType = "Simple Goal";
+        _goalType = "SimpleGoal";
     }
-
-    public override int RecordEvent()
-    {
-        return -1;
-    }
+    
     public override bool isComplete()
     {
-        return false;
+        return _isComplete;
+    }
+    public override int RecordEvent()
+    {
+        
+        _isComplete = true;
+        if (_goalCount == 0)
+        {
+            _goalCount++;
+            return _pointsValue;
+        }
+        else
+        {
+            return 0;
+        }
+        
     }
 }

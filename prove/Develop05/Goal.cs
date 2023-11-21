@@ -3,11 +3,13 @@ using System.Reflection.Metadata.Ecma335;
 public abstract class Goal
 {
     protected bool _isComplete;
+    protected string _goalType;
     protected string _goalName;
     protected string _goalDescription;
     protected int _pointsValue;
-    protected string _goalType;
-
+    protected int _goalCount;
+    
+    public Goal() {}
     public Goal(string goalName, string goalDescription, int pointsValue)
     {
         _goalName = goalName;
@@ -15,28 +17,36 @@ public abstract class Goal
         _pointsValue = pointsValue;
         _isComplete = false;
         _goalType = "";
+        _goalCount = 0;
     }
 
-    public void SetGoalType(){}
     public string GetGoalType(){
-        return "";
+        return _goalType;
     }
-    public void SetGoal(){}
-    public string GetGoal(){
-        return "";
+    public string GetGoalName(){
+        return _goalName;
     }
-    public void SetDescription(){}
     public string GetDescription(){
-        return "";
+        return _goalDescription;
     }
-    public void SetPoints(){}
-    public string GetPoints(){
-        return "";
+    public int GetPoints(){
+        return _pointsValue;
     }
     public virtual int RecordEvent(){
-        return -1;
+        return _pointsValue;
     }
     public virtual bool isComplete() {
-        return false;
+        return _isComplete;
+    }
+    public virtual int GetGoalCount()
+    {
+        return _goalCount;
+    }
+
+    public virtual int GetFinalGoal() {
+        return 0;
+    }
+    public virtual int GetBouns(){
+        return 0;
     }
 }

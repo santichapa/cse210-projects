@@ -1,18 +1,20 @@
 public class EternalGoal : Goal
 {
-    private DateTime _completionDate;
+    // private DateTime _completionDate;
 
     public EternalGoal(string goalName, string goalDescription, int pointsValue) : base(goalName, goalDescription, pointsValue)
     {
-        _goalType = "Eternal Goal";
+        _goalType = "EternalGoal";
+        _goalCount = 0;
     }
 
     public override int RecordEvent()
     {
-        return -1;
+        _goalCount++;
+
+        return _pointsValue;
     }
-    public override bool isComplete()
-    {
-        return false;
-    }
+    // public override bool isComplete(){
+    //     return _isComplete;
+    // }
 }

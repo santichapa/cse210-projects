@@ -6,7 +6,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        Menu menu = new(){};
+        MenuInterface menu = new();
 
         int userInput;
         do
@@ -21,16 +21,13 @@ class Program
                     switch (menu.SelectGoalType())
                     {
                         case 1:
-                            Console.WriteLine("simple goal");
-                            Console.ReadLine();
+                            menu.SaveNewGoal(1);
                             break;
                         case 2:
-                            Console.WriteLine("eternal goal");
-                            Console.ReadLine();
+                            menu.SaveNewGoal(2);
                             break;
                         case 3:
-                            Console.WriteLine("checklist goal");
-                            Console.ReadLine();
+                            menu.SaveNewGoal(3);
                             break;
                         default:
 
@@ -39,7 +36,7 @@ class Program
                     break;
                 case 2: // List goals
                     Console.Clear();
-                    Console.WriteLine("2");
+                    menu.DisplayGoalList();
                     Console.ReadLine();
                     break;
                 case 3: // Save goals to a file
@@ -54,8 +51,7 @@ class Program
                     break;
                 case 5: // Record event
                     Console.Clear();
-                    Console.WriteLine("5");
-                    Console.ReadLine();
+                    menu.UpdateGoalMenu();
                     break;
             }
         } while (userInput != 6);
