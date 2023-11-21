@@ -41,12 +41,12 @@ class Program
                     break;
                 case 3: // Save goals to a file
                     Console.Clear();
-                    Console.WriteLine("3");
+                    menu.SaveToFile();
                     Console.ReadLine();
                     break;
                 case 4: // Load goals from a file
                     Console.Clear();
-                    Console.WriteLine("4");
+                    menu.LoadFromFile();
                     Console.ReadLine();
                     break;
                 case 5: // Record event

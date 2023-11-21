@@ -1,5 +1,6 @@
 using System.Dynamic;
 using System.Xml.Serialization;
+using System.IO;
 
 public class MenuInterface
 {
@@ -52,13 +53,13 @@ public class MenuInterface
         {
         Console.WriteLine("How many times does this goal need to be accomplished for a bonus?");
         Console.Write("> ");
-        int goalcount = int.Parse(Console.ReadLine());
+        int goalCount = int.Parse(Console.ReadLine());
 
         Console.WriteLine("What is the bonus amount? ");
         Console.Write("> ");
         int bonusPoints = int.Parse(Console.ReadLine());
 
-        ChekListGoal newGoal = new(goalName, goalDescription, pointsValue, goalcount, bonusPoints);
+        ChecklistGoal newGoal = new(goalName, goalDescription, pointsValue, goalCount, bonusPoints);
         _goalList.Add(newGoal);
         }
     }
@@ -88,13 +89,6 @@ public class MenuInterface
         }
         Console.Write("\nPress Enter to return to the menu.");
     }
-    // public void DisplayChecklistProgress(){
-    //     foreach (ChekListGoal g in _goalList)
-    //     {
-    //         string goalProgress = $" {g.GetGoalCount()}/{g.GetFinalGoal()}";
-    //     }
-
-    // }
     public void UpdateGoalMenu(){
         Console.WriteLine("The goals are:");
         int index = 1;
@@ -111,25 +105,6 @@ public class MenuInterface
 
         SumPoints(_goalList[completedGoalIndex]);
     }
-    // public void SumPoints(){
-    //     _totalPoints = 0;
-        
-    //     foreach (Goal g in _goalList)
-    //     {
-    //         if (g.GetGoalType() == "SimpleGoal" && g.isComplete())
-    //         {
-    //             _totalPoints += g.RecordEvent();
-    //         }
-    //         else if (g.GetGoalType() == "EternalGoal")
-    //         {
-    //             _totalPoints += g.GetPoints() * g.GetGoalCount();
-    //         }
-    //         else if (g.GetGoalType() == "ChecklistGoal")
-    //         {
-    //             _totalPoints += g.GetPoints() * g.GetGoalCount() + g.RecordEvent();
-    //         }
-    //     }   
-    // }
     public void SumPoints(Goal goal)
     {
         int points = goal.RecordEvent();
@@ -144,7 +119,81 @@ public class MenuInterface
             _level++;
         }
     }
-    public void SaveToFile(){}
-    public void LoadFromFile(){}
+    public void SaveToFile()
+    {
+        string filename = "goals.txt";
+
+        Console.WriteLine("Saving to file... ");
+
+        using (StreamWriter outputFile = new StreamWriter(filename))
+        {
+            outputFile.WriteLine($"{_totalPoints}||{_maxPoints}||{_level}");
+            foreach (Goal g in _goalList)
+            {
+                if (g.GetGoalType() == "SimpleGoal")
+                {
+                    outputFile.WriteLine($"{g.GetGoalType()}||{g.GetGoalName()}||{g.GetDescription()}||{g.GetPoints()}||{g.isComplete()}||{g.GetGoalCount()}");
+                }
+                else if (g.GetGoalType() == "EternalGoal")
+                {
+                    outputFile.WriteLine($"{g.GetGoalType()}||{g.GetGoalName()}||{g.GetDescription()}||{g.GetPoints()}");
+                }
+                else if(g.GetGoalType() == "ChecklistGoal")
+                {
+                    outputFile.WriteLine($"{g.GetGoalType()}||{g.GetGoalName()}||{g.GetDescription()}||{g.GetPoints()}||{g.isComplete()}||{g.GetGoalCount()}||{g.GetFinalGoal()}||{g.GetBouns()}");
+                }
+                
+            }
+        }
+        Console.WriteLine("Done! press Enter to return to the menu.");
+    }
+    public void LoadFromFile()
+    {
+        Console.WriteLine("Loading from file...");
+        string filename = "goals.txt";
+        
+        string[] lines = File.ReadAllLines(filename);
+        
+
+        string[] levelParts = lines[0].Split("||");
+
+        _totalPoints = int.Parse(levelParts[0]);
+        _maxPoints = int.Parse(levelParts[1]);
+        _level = int.Parse(levelParts[2]);
+    
+        
+        lines = lines.Where((val, idx) => idx != 0).ToArray();
+
+        foreach (string line in lines)
+        {
+            string[] parts = line.Split("||");
+
+            string goalType = parts[0];
+            string goalName = parts[1];
+            string goalDescription = parts[2];
+            int pointsValue = int.Parse(parts[3]);
+            bool isComplete = bool.Parse(parts[4]);
+            int goalCount = int.Parse(parts[5]);
+
+            if (goalType == "SimpleGoal")
+            {
+                SimpleGoal newGoal = new(goalType, goalName, goalDescription, pointsValue, isComplete, goalCount);
+                _goalList.Add(newGoal);
+            }
+            else if (goalType == "EternalGoal")
+            {
+                EternalGoal newGoal = new(goalName, goalDescription, pointsValue);
+                _goalList.Add(newGoal);
+            }
+            else if (goalType == "ChecklistGoal")
+            {
+                int bonusPoints = int.Parse(parts[7]);
+                int finalGoal = int.Parse(parts[6]);
+                ChecklistGoal newGoal = new(goalType, goalName, goalDescription, pointsValue, isComplete, goalCount, finalGoal, bonusPoints);
+                _goalList.Add(newGoal);
+            }
+        }
+        Console.WriteLine("Done! press Enter to return to the menu.");
+    }
 
 }

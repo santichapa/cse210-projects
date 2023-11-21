@@ -8,6 +8,9 @@ public class EternalGoal : Goal
         _goalCount = 0;
     }
 
+    public EternalGoal(string goalType, string goalName, string goalDescription, int pointsValue, bool isComplete, int goalCount) : base(goalType, goalName, goalDescription, pointsValue, isComplete, goalCount){}
+
+
     public override int RecordEvent()
     {
         _goalCount++;

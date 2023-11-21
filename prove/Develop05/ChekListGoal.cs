@@ -1,18 +1,21 @@
 using System.Security.Cryptography;
 
-public class ChekListGoal : Goal
+public class ChecklistGoal : Goal
 {
     public int _finalGoal;
     private int _bonusPoints;
-    public ChekListGoal(string goalName, string goalDescription, int pointsValue, int finalGoal, int bonusPoints) : base(goalName, goalDescription, pointsValue)
+    public ChecklistGoal(string goalName, string goalDescription, int pointsValue, int finalGoal, int bonusPoints) : base(goalName, goalDescription, pointsValue)
     {
         _goalType = "ChecklistGoal";
         _finalGoal = finalGoal;
         _bonusPoints = bonusPoints;
     }
-    // public string ChecklistProgress(){
-    //     return $"-- Current progress: {_goalCount}/{_finalGoal}";
-    // }
+    public ChecklistGoal(string goalType, string goalName, string goalDescription, int pointsValue, bool isComplete, int goalCount, int finalGoal, int bonusPoints) : base(goalType, goalName, goalDescription, pointsValue, isComplete, goalCount)
+    {
+        _finalGoal = finalGoal;
+        _bonusPoints = bonusPoints;
+    }
+
     public override int RecordEvent()
     {
         _goalCount++;

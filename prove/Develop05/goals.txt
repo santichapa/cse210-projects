@@ -1,0 +1,3 @@
+530||800||4
+SimpleGoal||goal1||simple goal||50||False||0
+ChecklistGoal||goal2||this is a checklist goal||10||False||0||3||500

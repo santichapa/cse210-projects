@@ -8,7 +8,12 @@ public abstract class Goal
     protected string _goalDescription;
     protected int _pointsValue;
     protected int _goalCount;
-    
+
+    public string GoalType { get; }
+    public string GoalName { get; }
+    public string GoalDescription { get; }
+    public int PointsValue { get; }
+
     public Goal() {}
     public Goal(string goalName, string goalDescription, int pointsValue)
     {
@@ -18,6 +23,23 @@ public abstract class Goal
         _isComplete = false;
         _goalType = "";
         _goalCount = 0;
+    }
+    public Goal(string goalType, string goalName, string goalDescription, int pointsValue, bool isComplete, int goalCount)
+    {
+        _goalName = goalName;
+        _goalDescription = goalDescription;
+        _pointsValue = pointsValue;
+        _isComplete = isComplete;
+        _goalType = goalType;
+        _goalCount = goalCount;
+    }
+
+    protected Goal(string goalType, string goalName, string goalDescription, int pointsValue)
+    {
+        GoalType = goalType;
+        GoalName = goalName;
+        GoalDescription = goalDescription;
+        PointsValue = pointsValue;
     }
 
     public string GetGoalType(){

@@ -8,6 +8,7 @@ public class SimpleGoal : Goal
     {
         _goalType = "SimpleGoal";
     }
+    public SimpleGoal(string goalType, string goalName, string goalDescription, int pointsValue, bool isComplete, int goalCount) : base(goalType, goalName, goalDescription, pointsValue, isComplete, goalCount){}
     
     public override bool isComplete()
     {
