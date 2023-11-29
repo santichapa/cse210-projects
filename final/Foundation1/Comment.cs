@@ -13,6 +13,6 @@ class Comment
 
     public string GetRenderedComment()
     {
-        return $"\n[{_user}]:\n\t{_text}";
+        return $"\n\t[@{_user}]:\n\t{_text}";
     }
 }

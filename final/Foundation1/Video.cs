@@ -26,4 +26,13 @@ class Video
             Console.WriteLine(c.GetRenderedComment());
         }
     }
+    public void AddComment(string user, string text)
+    {
+        Comment newComment = new(user, text);
+        _comments.Add(newComment);
+    }
+    public void DisplayVideo()
+    {
+        Console.WriteLine($"\n{_title} ({_length}sec)\n    by {_author} [{CountComments()} comments]");
+    }
 }
