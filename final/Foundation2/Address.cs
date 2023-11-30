@@ -17,7 +17,15 @@ class Address
 
     public bool CheckLocality()
     {
-        return false;
+        if (_country == "USA")
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        
     }
     public string GetRenderedAdress()
     {

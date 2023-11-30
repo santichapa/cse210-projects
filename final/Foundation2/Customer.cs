@@ -8,4 +8,12 @@ class Customer
         _name = name;
         _address = address;
     }
+    
+    public Address GetAddress(){
+        return _address;
+    }
+    public string GetName()
+    {
+        return _name;
+    }
 }

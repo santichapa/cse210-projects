@@ -15,6 +15,10 @@ class Product
 
     public decimal GetPrice()
     {
-        return 0;
+        return _productPrice * _productQuantity;
+    }
+    public string RenderPoductRow()
+    {
+        return $"|{_productId}\t\t|{_productName, -39}|$ {_productPrice, -13}|{_productQuantity}\n";
     }
 }
