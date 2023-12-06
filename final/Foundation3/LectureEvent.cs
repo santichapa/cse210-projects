@@ -9,8 +9,12 @@ public class LectureEvent : Event
         _capacity = capacity;
     }
 
-    public override void DisplayFull()
+    public override string RenderFull()
     {
-
+        return $"Lecture Event - {_title}\nby {_speaker}\n{_description}\n{_date} - {_time}\nCapacity: {_capacity}\n{_address.GetRenderedAdress()}";
+    }
+    public override string RenderShort()
+    {
+        return $"Lecture Event - {_title}: {_date}";
     }
 }

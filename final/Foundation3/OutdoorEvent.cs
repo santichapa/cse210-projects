@@ -6,8 +6,12 @@ public class OutdoorEvent : Event
         _weather = weather;
     }
 
-    public override void DisplayFull()
+    public override string RenderFull()
     {
-        
+        return $"Outdoor Event - {_title}\n{_description}\n{_date} - {_time}\n{_weather}\n{_address.GetRenderedAdress()}";
+    }
+    public override string RenderShort()
+    {
+        return $"Outdoor Event - {_title}: {_date}";
     }
 }

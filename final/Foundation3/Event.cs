@@ -1,3 +1,4 @@
+using System.Collections.Specialized;
 using System.Net.Sockets;
 
 public abstract class Event
@@ -17,13 +18,10 @@ public abstract class Event
         _address = address;
     }
 
-    public void DisplayStandard()
+    public string RenderStandard()
     {
-
+        return $"{_title}\n{_description}\n{_date} - {_time}\n{_address.GetRenderedAdress()}";
     }
-    public abstract void DisplayFull();
-    public void DisplayShort()
-    {
-
-    }
+    public abstract string RenderFull();
+    public abstract string RenderShort();
 }
