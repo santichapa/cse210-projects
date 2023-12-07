@@ -1,21 +1,22 @@
 public class Swimming : Activity
 {
     private int _laps;
-    public Swimming(string date, int duration) : base(date, duration)
+    public Swimming(string date, int duration, int laps) : base(date, duration)
     {
-
+        _type = "Swimming";
+        _laps = laps;
     }
 
-    public override string CalculateDistance()
+    public override decimal CalculateDistance()
     {
-        return base.CalculateDistance();
+        return 50m * _laps / 1000;
     }
-    public override string CalculateSpeed()
+    public override decimal CalculateSpeed()
     {
-        return base.CalculateSpeed();
+        return CalculateDistance() / _duration * 60;
     }
-    public override string CalculatePace()
+    public override decimal CalculatePace()
     {
-        return base.CalculatePace();
+        return 60 / CalculateSpeed();
     }
 }

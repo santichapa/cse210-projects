@@ -1,21 +1,22 @@
 public class Cycling : Activity
 {
     private decimal _speed;
-    public Cycling(string date, int duration) : base(date, duration)
-    {
-
+    public Cycling(string date, int duration, decimal speed) : base(date, duration)
+    {   
+        _speed = speed;
+        _type = "Cycling";
     }
 
-    public override string CalculateDistance()
+    public override decimal CalculateDistance()
     {
-        return base.CalculateDistance();
+        return _speed * (_duration / 60m);
     }
-    public override string CalculateSpeed()
+    public override decimal CalculateSpeed()
     {
-        return base.CalculateSpeed();
+        return _speed;
     }
-    public override string CalculatePace()
+    public override decimal CalculatePace()
     {
-        return base.CalculatePace();
+        return _duration / CalculateDistance();
     }
 }

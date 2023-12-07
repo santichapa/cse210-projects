@@ -2,6 +2,7 @@ public abstract class Activity
 {
     protected string _date;
     protected int _duration;
+    protected string _type;
 
     public Activity(string date, int duration)
     {
@@ -9,21 +10,21 @@ public abstract class Activity
         _duration = duration;
     }
 
-    public void GetSummary()
+    public string GetSummary()
     {
-        
+        return $"    > {_date} {_type} ({_duration} min): Distance: {Math.Round(CalculateDistance(), 1, MidpointRounding.AwayFromZero)} km, Speed: {Math.Round(CalculateSpeed(), 2, MidpointRounding.AwayFromZero)} kph, Pace: {Math.Round(CalculatePace(), MidpointRounding.AwayFromZero)} minutes per km";
     }
-    public virtual string CalculateDistance()
+    public virtual decimal CalculateDistance()
     {
-        return "";
+        return 0;
     }
-    public virtual string CalculateSpeed()
+    public virtual decimal CalculateSpeed()
     {
-        return "";
+        return 0;
     }
-    public virtual string CalculatePace()
+    public virtual decimal CalculatePace()
     {
-        return "";
+        return 0;
     }
 
 }

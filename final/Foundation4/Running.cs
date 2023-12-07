@@ -1,21 +1,22 @@
 public class Running : Activity
 {
     private decimal _distance;
-    public Running(string date, int duration) : base(date, duration)
+    public Running(string date, int duration, decimal distance) : base(date, duration)
     {
-
+        _type = "Running";
+        _distance = distance;
     }
 
-    public override string CalculateDistance()
+    public override decimal CalculateDistance()
     {
-        return base.CalculateDistance();
+        return _distance;
     }
-    public override string CalculateSpeed()
+    public override decimal CalculateSpeed()
     {
-        return base.CalculateSpeed();
+        return _distance / (_duration / 60m);
     }
-    public override string CalculatePace()
+    public override decimal CalculatePace()
     {
-        return base.CalculatePace();
+        return _duration / _distance;
     }
 }
